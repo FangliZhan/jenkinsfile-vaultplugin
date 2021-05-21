@@ -41,7 +41,7 @@ Configure an AppRole for Jenkins
 ```
 vault auth enable approle
 ````
-* create jenkins-pipeline policy for Jenkins to access the secrets 
+* Create jenkins-pipeline policy for Jenkins to access the secrets 
 ```
 vault policy write jenkins-pipeline -<< EOF
 path "kv/data/cicd" {
@@ -75,7 +75,7 @@ Configure your Jenkins with Vault Plugin installed. You can take a look at [this
     - Select Vault AppRole as the credential type
 ![image](https://user-images.githubusercontent.com/31291225/119159032-7766ab80-ba1c-11eb-9bfd-4fea3f4908c6.png)
  - Create a pipeline using the Jenkinsfile pipeline code
- - Run the pipeline. The output will look similiar to below when the build is successful
+ - Run the pipeline. The output will look similiar to below if the build is successful
 ![image](https://user-images.githubusercontent.com/31291225/119159597-01167900-ba1d-11eb-9d29-aab3fdb8c778.png)
 
 
