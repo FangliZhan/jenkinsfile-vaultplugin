@@ -37,7 +37,6 @@ Once you have TFC account and Vault running:
   vault write kv/data/cicd @secrets.json
   ```
 * Enable AppRole auth method so that Jenkins can be authenticated to Vault
-  - Enable approle auth method
 ```
 vault auth enable approle
 ````
