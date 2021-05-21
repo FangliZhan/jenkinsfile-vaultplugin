@@ -1,7 +1,7 @@
 pipeline {
   agent any
   parameters {
-    string(name: 'vaulturl', defaultValue: 'http://vault.vault.svc.cluster.local:8200', description: 'Vault API URL')
+    string(name: 'vaulturl', defaultValue: 'http://184.72.205.78:8200', description: 'Vault API URL')
     string(name: 'vaultpath', defaultValue: 'kv/cicd', description: 'Secrets path for Vault secrets')
   }
   stages {
@@ -10,7 +10,7 @@ pipeline {
         withVault(
           configuration: [
             failIfNotFound: true, 
-            timeout: 10, 
+            timeout: 20, 
             vaultCredentialId: 'vault-app-role', 
             vaultUrl: "${params.vaulturl}"
           ], 
@@ -39,7 +39,7 @@ pipeline {
         withVault(
           configuration: [
             failIfNotFound: true, 
-            timeout: 10, 
+            timeout: 20, 
             vaultCredentialId: 'vault-app-role', 
             vaultUrl: "${params.vaulturl}"
           ],
@@ -53,9 +53,10 @@ pipeline {
             ]
           ]
         ) {
-            sh """
-            curl -H "Authorization: ${ghtoken}" "https://api.github.com/users/${ghuser}/repos" | grep -o "git@[^\"]*"
-            """
+            sh '''
+            # echo "${env.ghtoken}"
+            curl -H "Authorization: ${ghtoken}" "https://api.github.com/users/${ghuser}/repos" | grep -o "git@[^\\"]*"
+            '''
           }   
       }
     }
