@@ -36,11 +36,12 @@ Once you have TFC account and Vault running:
   ```bash
   vault write kv/data/cicd @secrets.json
   ```
+Configure an AppRole for Jenkins
 * Enable AppRole auth method so that Jenkins can be authenticated to Vault
 ```
 vault auth enable approle
 ````
- - create jenkins-pipeline policy for Jenkins to access the secrets 
+* create jenkins-pipeline policy for Jenkins to access the secrets 
 ```
 vault policy write jenkins-pipeline -<< EOF
 path "kv/data/cicd" {
@@ -51,14 +52,14 @@ path "kv/cicd" {
 }
 EOF
 ```
- - Create an approle for jenkins pipeline
+* Create an approle for jenkins pipeline
 ```
  vault write auth/approle/role/jenkins-pipeline \
 > token_policies=jenkins-pipeline \
 > token_ttl=1h \
 > token_max_ttl=4h
 ```
- - Get the role id and secret id for the role
+* Get the role id and secret id for the role
 
 ```
 vault read auth/approle/role/jenkins-pipeline/role-id
@@ -67,7 +68,7 @@ vault write -f auth/approle/role/jenkins-pipeline/secret-id
 
 ```
 
-* Configure your Jenkins with Vault Plugin installed. You can take a look at [this repo]() using JCasC to configure from scratch. I adds the Jenkinsfile pipeline from this repo.
+Configure your Jenkins with Vault Plugin installed. You can take a look at [this repo]() using JCasC to configure from scratch. I adds the Jenkinsfile pipeline from this repo.
  - Download and install Vault Plugin in Jenkins (Manage Jenkins--> Manage Plugin --> search for the Vault plugin --> install)
  - Create credentials for Vault in Jenkins
     - Navigate to Manage Credentials--> Global Credentials--> Add credentials
