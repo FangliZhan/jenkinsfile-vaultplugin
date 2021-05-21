@@ -40,7 +40,6 @@ Once you have TFC account and Vault running:
   - Enable approle auth method
 ```
 vault auth enable approle
-
 ````
  - create jenkins-pipeline policy for Jenkins to access the secrets 
 ```
@@ -77,6 +76,7 @@ vault write -f auth/approle/role/jenkins-pipeline/secret-id
 ![image](https://user-images.githubusercontent.com/31291225/119159032-7766ab80-ba1c-11eb-9bfd-4fea3f4908c6.png)
  - Create a pipeline using the Jenkinsfile pipeline code
  - Run the pipeline. The output will look similiar to below when the build is successful
- ![image](https://user-images.githubusercontent.com/31291225/119159478-df1cf680-ba1c-11eb-88cf-8fc4f68a7e79.png)
+![image](https://user-images.githubusercontent.com/31291225/119159597-01167900-ba1d-11eb-9d29-aab3fdb8c778.png)
+
 
 
